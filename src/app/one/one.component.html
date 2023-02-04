@@ -1,0 +1,29 @@
+<div class="row mt-5">
+    <div class="col-sm-12 col-md-6 py-4 border">
+        <h2 class="mb-4">Add Section</h2>
+        <form [formGroup]="myForm" (ngSubmit)="handleClick()">
+            <div class="form-group">
+                <label for="head">Section Header</label>
+                <input type="text" name="head" class="p-inputtext-sm form-control" pInputText formControlName="header">
+                <small *ngIf="myForm.get('header').invalid && myForm.get('header').touched"
+                    class="form-text text-danger">header is required</small>
+            </div>
+            <div class="form-group">
+                <label for="body">Section Details</label>
+                <textarea class="form-control" pInputTextarea [autoResize]="true" formControlName="body"></textarea>
+                <small *ngIf="myForm.get('body').invalid && myForm.get('body').touched"
+                    class="form-text text-danger">Details is required</small>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-block btn-primary" [disabled]="myForm.invalid">Add</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-12 mt-2 col-md-6">
+        <p-accordion>
+            <p-accordionTab [header]="list.header" *ngFor="let list of AccordianList">
+                <p>{{list.body}}</p>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>
